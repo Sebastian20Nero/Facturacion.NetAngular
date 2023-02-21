@@ -1,0 +1,39 @@
+<h2 class="content-block">Clientes</h2>
+
+<dx-data-grid class="dx-card wide-card"
+  [dataSource]="dataSource"
+  [focusedRowEnabled]="true"
+  [focusedRowIndex]="0"
+  [columnAutoWidth]="true"
+  [columnHidingEnabled]="true"
+  (onRowInserting)="EventGuardar()"
+  (onRowInserted)="confirmarGuardar()"
+  >
+
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+  <dxi-column
+    dataField="idcliente"
+    [width]="90">
+  </dxi-column>
+  <dxi-column
+    dataField="nombre"
+    [width]="190">
+  </dxi-column>
+  <dxi-column
+    dataField="fechanacimiento"
+    caption="fechanacimiento"
+    dataType="date"
+    [width]="190">
+  </dxi-column>
+  
+  <dxo-editing
+    mode="row"
+    [allowUpdating]="true"
+    [allowDeleting]="true"
+    [allowAdding]="true"
+  >
+  </dxo-editing>
+</dx-data-grid>

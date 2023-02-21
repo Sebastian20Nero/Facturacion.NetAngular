@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10"><h3>Listado de productos</h3></div>
+    <div class="col-2"><button class="btn btn-outline-warning"  (click)="generarfactura()" ><a class="nav-link text-dark" >Crear</a></button></div>
+  </div>
+  <div class="row">
+    <div class="col-2"><strong>Modo Pago:</strong></div>
+    <div class="col-2"><input  class="form-control input-sm"  id="txtmodo"  /></div>
+    <div class="col-2"><strong>Cliente:</strong></div>
+    <div class="col-2">
+      <select [(ngModel)]="opcionSeleccionado" id="txtid">
+        <option [value]="item.idcliente" *ngFor="let item of listaCliente">{{item.nombre}}</option>  
+      </select>
+    </div>
+  </div>
+  
+  <table class="table table-hover">
+    <thead>
+      <tr> 
+        <th><strong>#</strong></th>
+        <th><strong>Producto</strong></th>
+        <th><strong>Precio</strong></th>
+        <th><strong>Cantidad</strong></th>
+        <th><strong>Accion</strong></th>
+        <th></th>
+      </tr>
+    </thead>
+     <tbody>
+       <tr *ngFor="let pro of listaProductos; index as i">
+         <td>
+           {{pro.idproducto}}
+         </td>
+         <td class="text-primary">
+           <strong>{{pro.producto1}}</strong>
+         </td>
+         <td class="text-success"><strong>{{pro.precio}}</strong></td>
+         
+         <td class="text-dark">
+            
+          <strong><input  class="form-control input-sm"  id="txtstock_{{i}}" placeholder={{pro.stock}} /></strong></td>
+         <td>
+           <button (click)="agregarfactura(i, pro.stock)" class="btn btn-success btn-sm">
+             Agregar
+           </button> 
+         </td>
+       </tr>
+     </tbody>
+  </table>
+</div>
+
+
+<ng-template #myModalInfo let-modal>
+  <div class="modal bg-secondary" tabindex="-1" style="display:block;" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h5 class="modal-title">Información</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{resultadoPeticion}}
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

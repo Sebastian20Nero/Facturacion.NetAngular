@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10"><h3>Mis Facturas</h3></div>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><strong>#</strong></th>
+        <th><strong>Nombre-modopago</strong></th>
+        <th><strong>Details</strong></th>
+        <th></th>
+      </tr>
+    </thead>
+     <tbody>
+       <tr *ngFor="let pro of listaFactura; index as i">
+         <td>
+           {{pro.idcliente}}{{pro.idfactura}}
+         </td>
+         <td class="text-dark">
+            <p>{{pro.nombre}}-{{pro.modopago}}</p>
+            <p>{{pro.fecharegistro}}</p>
+         </td>
+         
+         <td class="text-dark">
+            
+
+            <div *ngFor="let det of pro.detallesproducto; index as j">
+                
+              <p>Producto:{{det.producto}}</p>
+              <p>Cantidad:{{det.cantidad}}</p>
+              <p>Precio:{{det.precio}}</p>
+              <p>-----------------------</p>
+            </div>
+
+        </td>
+         
+       </tr>
+     </tbody>
+  </table>
+</div>
+
+<ng-template #myModalInfo let-modal>
+  <div class="modal bg-secondary" tabindex="-1" style="display:block;" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h5 class="modal-title">Información</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{resultadoPeticion}}
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+

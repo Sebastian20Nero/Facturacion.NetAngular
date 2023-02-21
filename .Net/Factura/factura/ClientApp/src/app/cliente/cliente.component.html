@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10"><h3>Listado Cliente</h3></div>
+    <div class="col-2"><button class="btn btn-outline-warning"><a class="nav-link text-dark"  [routerLink]="['/formcliente']">Crear</a></button></div>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th><strong>#</strong></th>
+        <th><strong>Nombre</strong></th>
+        <th><strong>Fecha nacimiento</strong></th>
+        <th><strong>Accion</strong></th>
+        <th></th>
+      </tr>
+    </thead>
+     <tbody>
+       <tr *ngFor="let pro of listaCliente; index as i">
+         <td>
+           {{pro.idcliente}}
+         </td>
+         <td class="text-primary">
+           <input  class="form-control input-sm"  value={{pro.nombre}} id="txtnombre_{{i}}"  />
+         </td>
+         
+         <td class="text-dark"><strong>
+          <input  class="form-control input-sm"  value={{pro.fechanacimiento}} id="txtfecha_{{i}}"  />
+          </strong></td>
+         <td>
+           <button (click)="cambiarProducto(pro.idcliente, i)" class="btn btn-success btn-sm">
+             Editar
+           </button> 
+         </td>
+         <td>
+          <button (click)="eliminarProducto(pro.idcliente)" class="btn btn-danger btn-sm">
+            Eliminar
+          </button>
+         </td>
+         <td>
+          <button (click)="FacturaCliente(pro.idcliente)" class="btn btn-info btn-sm">
+            Facturas
+          </button>
+         </td>
+       </tr>
+     </tbody>
+  </table>
+</div>
+
+<ng-template #myModalInfo let-modal>
+  <div class="modal bg-secondary" tabindex="-1" style="display:block;" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h5 class="modal-title">Información</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{resultadoPeticion}}
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+

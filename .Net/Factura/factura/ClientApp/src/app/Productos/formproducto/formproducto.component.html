@@ -1,0 +1,66 @@
+<div class="container">
+  <h3>Form Cliente</h3>
+  <form [formGroup]="altaForm" (ngSubmit)="Guardar()">
+    <div class="form-group row">
+      <label for="Producto" class="col-sm-2 col-form-label">
+        Producto:
+      </label>
+      <div class="col-sm-10">
+        <input id="Producto" type="text" class="form-control" placeholder="Nombre"
+               formControlName="producto"
+               [ngClass]="{ 'is-invalid': enviado && f.producto.errors }" />
+        <div *ngIf="enviado && f.producto.errors" class="invalid-feedback">
+          <div *ngIf="f.producto.errors.required">Nombre es obligatorio</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="Precio" class="col-sm-2 col-form-label">
+        Precio:
+      </label>
+      <div class="col-sm-10">
+        <input id="Precio" type="number" class="form-control" placeholder="stock"
+               formControlName="precio"
+               [ngClass]="{ 'is-invalid': enviado && f.precio.errors }" />
+        <div *ngIf="enviado && f.precio.errors" class="invalid-feedback">
+          <div *ngIf="f.precio.errors.required">Nombre es obligatorio</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="Producto" class="col-sm-2 col-form-label">
+        Stock:
+      </label>
+      <div class="col-sm-10">
+        <input id="Stock" type="number" class="form-control" placeholder="stock"
+               formControlName="stock"
+               [ngClass]="{ 'is-invalid': enviado && f.stock.errors }" />
+        <div *ngIf="enviado && f.stock.errors" class="invalid-feedback">
+          <div *ngIf="f.stock.errors.required">Nombre es obligatorio</div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <button class="btn btn-primary" type="submit">Guardar</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #myModalInfo let-modal>
+  <div class="modal bg-secondary" tabindex="-1" style="display:block;" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h5 class="modal-title">Información</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{resultadoPeticion}}
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

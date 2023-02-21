@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10"><h3>Listado de productos</h3></div>
+    <div class="col-2"><button class="btn btn-outline-warning"><a class="nav-link text-dark"  [routerLink]="['/formproducto']">Crear</a></button></div>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr> 
+        <th><strong>#</strong></th>
+        <th><strong>Producto</strong></th>
+        <th><strong>Precio</strong></th>
+        <th><strong>Stock</strong></th>
+        <th><strong>Accion</strong></th>
+        <th></th>
+      </tr>
+    </thead>
+     <tbody>
+       <tr *ngFor="let pro of listaProductos; index as i">
+         <td>
+           {{pro.idproducto}}
+         </td>
+         <td class="text-primary">
+           <strong><input  class="form-control input-sm"  value={{pro.producto1}} id="txtproducto_{{i}}"  /></strong>
+         </td>
+         <td class="text-success"><strong><input  class="form-control input-sm"  value={{pro.precio}} id="txtprecio_{{i}}"  /></strong></td>
+         
+         <td class="text-dark">
+            
+          <strong><input  class="form-control input-sm"  value={{pro.stock}} id="txtstock_{{i}}"  /></strong></td>
+         <td>
+           <button (click)="cambiarProducto(pro.idproducto, i)" class="btn btn-success btn-sm">
+             Editar
+           </button> 
+         </td>
+         <td>
+          <button (click)="eliminarProducto(pro.idproducto)" class="btn btn-danger btn-sm">
+            Eliminar
+          </button>
+         </td>
+       </tr>
+     </tbody>
+  </table>
+  <div class="row">
+    <div class="col-10">
+      <button (click)="saldonegativo()" class="btn btn-danger btn-sm">
+      Salgo Negativo
+      </button> 
+    </div>
+    <div class="col-2">
+      <button (click)="dameProductos()" class="btn btn-success btn-sm">
+        Productos
+      </button> </div>
+  </div>
+  
+</div>
+
+
+<ng-template #myModalInfo let-modal>
+  <div class="modal bg-secondary" tabindex="-1" style="display:block;" role="dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <h5 class="modal-title">Información</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{resultadoPeticion}}
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
